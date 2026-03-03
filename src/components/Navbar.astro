@@ -1,0 +1,59 @@
+---
+const links = [
+  { label: "Home", href: "#" },
+  { label: "Destinos", href: "#destinos" },
+  { label: "Blog", href: "#blog" },
+  { label: "Novidades", href: "#novidades" },
+  { label: "Contato", href: "#contato" },
+];
+---
+
+<nav class="sticky top-0 z-50 bg-dark">
+  <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+    <a href="/" class="text-white text-xl font-bold tracking-wide">R. Amaral</a>
+
+    <!-- Desktop menu -->
+    <ul class="hidden md:flex items-center gap-8">
+      {links.map((link) => (
+        <li>
+          <a href={link.href} class="text-white/80 hover:text-white text-sm transition-colors">
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Hamburger button -->
+    <button
+      id="menu-toggle"
+      class="md:hidden text-white"
+      aria-label="Abrir menu"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-dark border-t border-white/10">
+    <ul class="flex flex-col px-4 py-4 gap-4">
+      {links.map((link) => (
+        <li>
+          <a href={link.href} class="text-white/80 hover:text-white text-sm transition-colors">
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>
+
+<script>
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+
+  toggle?.addEventListener("click", () => {
+    menu?.classList.toggle("hidden");
+  });
+</script>
